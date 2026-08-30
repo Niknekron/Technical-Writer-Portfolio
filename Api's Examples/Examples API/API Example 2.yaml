@@ -1,0 +1,107 @@
+```yaml
+# Источник: Stripe API Reference
+# Это фрагмент документации по Stripe REST API.
+# Ниже описан один body-параметр `email` для POST-запроса Create a customer.
+
+parameter_documentation:
+  api:
+    name: "Stripe API"
+    # Название API.
+
+    operation: "Create a customer"
+    # Название операции в официальной документации.
+
+    method: "POST"
+    # HTTP-метод.
+    # POST используется для создания новой сущности.
+
+    path: "/v1/customers"
+    # Путь endpoint.
+    # Он добавляется к базовому URL Stripe API.
+
+    base_url: "https://api.stripe.com"
+    # Базовая часть адреса API.
+    # Полный URL запроса:
+    # https://api.stripe.com/v1/customers
+
+  parameter:
+    name: "email"
+    # Имя параметра.
+
+    in: "body"
+    # Параметр передается в теле запроса.
+    # Это не path-параметр и не query-параметр.
+
+    type: "string"
+    # Тип данных параметра.
+
+    required: false
+    # Параметр необязательный.
+    # Запрос можно отправить и без него.
+
+    max_length: 512
+    # Максимальная длина значения.
+
+    description: "Email-адрес клиента."
+    # Короткое описание параметра простыми словами.
+
+    purpose: "Используется для отображения клиента в Dashboard, поиска и трекинга."
+    # Зачем параметр нужен по смыслу.
+
+  request_body_format:
+    style: "form-encoded"
+    # В официальном curl-примере Stripe параметры передаются через -d и --data-urlencode.
+    # Это означает, что тело запроса передается не как JSON, а как form-encoded данные.
+
+  request_headers:
+    Authorization: "Bearer <YOUR_SECRET_KEY>"
+    # Авторизация обязательна для вызова Stripe API.
+
+  request_example_curl: |
+    curl https://api.stripe.com/v1/customers \
+      -u "<YOUR_SECRET_KEY>:" \
+      --data-urlencode email="jennyrosen@example.com"
+  # Пример запроса из официальной документации, сокращенный до одного параметра.
+  # Здесь email передается в теле POST-запроса.
+
+  how_to_read:
+    endpoint: "POST /v1/customers"
+    # Это операция создания нового клиента.
+
+    parameter_position: "email передается в request body"
+    # Главная мысль:
+    # email находится в теле запроса.
+
+    not_query: true
+    # Это не query-параметр.
+    # Нельзя писать так:
+    # /v1/customers?email=jennyrosen@example.com
+
+    not_path: true
+    # Это не path-параметр.
+    # Он не подставляется в URL как часть пути.
+
+  example_value:
+    email: "jennyrosen@example.com"
+    # Пример корректного значения параметра.
+
+  success_response:
+    status: 200
+    # Успешный ответ возвращает объект Customer.
+
+    returns: "Customer object"
+    # Что именно приходит в ответе.
+
+    response_fragment:
+      email: "jennyrosen@example.com"
+      object: "customer"
+    # Это не полный ответ, а только короткий фрагмент,
+    # чтобы показать, что email затем присутствует в объекте клиента.
+
+  short_table_view:
+    name: "email"
+    in: "body"
+    type: "string"
+    required: false
+    max_length: 512
+    description: "Email-адрес клиента"

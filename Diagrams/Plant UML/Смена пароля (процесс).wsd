@@ -1,0 +1,25 @@
+@startuml
+actor "Пользователь" as User
+boundary "Клиент (UI)" as UI
+control "Backend API" as API
+control "Auth Service" as Auth
+
+User -> UI: Нажал "Сохранить"
+UI -> API: POST /password/change\n(currentPwd, newPwd)
+activate API
+
+API -> Auth: validateCurrentPassword(currentPwd)
+
+alt невалидно
+  Auth --> API: invalid
+  API --> UI: 401/400 error
+  UI --> User: Показать ошибку
+else валидно
+  Auth --> API: ok
+  API -> API: updatePassword(newPwd)
+  API --> UI: 200 success
+  UI --> User: Показать успех
+end
+
+deactivate API
+@enduml

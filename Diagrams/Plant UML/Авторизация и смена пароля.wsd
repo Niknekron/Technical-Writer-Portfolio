@@ -1,0 +1,19 @@
+@startuml
+left to right direction
+actor "Пользователь" as User
+
+rectangle "Личный кабинет" {
+  usecase "Войти" as UC_Login
+  usecase "Сменить пароль" as UC_ChangePwd
+  usecase "Выйти" as UC_Logout
+  usecase "Восстановить пароль" as UC_ResetPwd
+}
+
+User -- UC_Login
+User -- UC_ChangePwd
+User -- UC_Logout
+User -- UC_ResetPwd
+
+UC_ChangePwd ..> UC_Login : <<include>>
+UC_ResetPwd ..> UC_Login : <<extend>>
+@enduml
